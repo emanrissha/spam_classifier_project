@@ -15,6 +15,7 @@ The system includes:
 
 ## Project Structure
 
+```markdown
 spam_classifier_project/
 │
 ├── data/
@@ -37,7 +38,7 @@ spam_classifier_project/
 ├── main.py # CLI for running training/evaluation/prediction
 ├── requirements.txt # Project dependencies
 └── README.md # This file
-
+```
 
 ---
 
