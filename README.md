@@ -147,7 +147,7 @@ When evaluating the model, you'll get:
 
 - 📊 Confusion matrix heatmap
 
-<p align="center"> <img src="outputs/plots/confusion_matrix.png" alt="Confusion Matrix" width="450"/> </p>
+<p align="center"> <img src="confusion_matrix.png" alt="Confusion Matrix" width="450"/> </p>
 
 <br><br>
 
