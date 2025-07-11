@@ -62,7 +62,7 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-How to Use
+## How to Use
 Run the main script:
 
 ```bash
@@ -77,7 +77,7 @@ Choose from the menu:
 
 3. Predict Message: Input your own message and get spam/ham prediction.
 
-Dataset Format
+## Dataset Format
 The CSV file spam_data_processed.csv should contain two columns:
 
 text: SMS message text (string)
@@ -90,7 +90,7 @@ label	text
 0	"Ok lar... Joking wif u oni..."
 1	"Free entry in 2 a wkly comp to win FA Cup..."
 
-Model Details
+## Model Details
 Simple feed-forward neural network with two hidden layers (16 and 8 neurons)
 
 ReLU activation for hidden layers
@@ -101,7 +101,7 @@ Trained with Adam optimizer and binary crossentropy loss
 
 Early stopping used to prevent overfitting
 
-Notes & Tips
+## Notes & Tips
 Ensure your data labels are numeric 0/1, not string labels like 'ham'/'spam'.
 
 The tokenizer is limited to the top 1000 words and uses padding/truncation to length 100.
@@ -110,9 +110,11 @@ Evaluation outputs precision, recall, f1-score, and shows a confusion matrix hea
 
 You can reuse the saved model and tokenizer in your own applications.
 
-Contact & Contribution
+## Contact & Contribution
 Feel free to open issues or submit pull requests for improvements!
 
-License
-MIT License
+## License
+This project is licensed under the MIT License.
+
+
 
