@@ -1,8 +1,6 @@
 # 🚫📩 Spam Classifier with TensorFlow & Keras
 
-[![Build Status](https://github.com/emanrissha/spam_classifier_project/actions/workflows/main.yml/badge.svg)](https://github.com/yourusername/spam_classifier_project/actions)
-![Python](https://img.shields.io/badge/python-3.11-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
+
 ![Python](https://img.shields.io/badge/Python-3.11-blue.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
