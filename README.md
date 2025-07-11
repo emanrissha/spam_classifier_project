@@ -38,9 +38,6 @@ spam_classifier_project/
 ├── requirements.txt # Project dependencies
 └── README.md # This file
 
-yaml
-Copy
-Edit
 
 ---
 
@@ -58,16 +55,12 @@ venv\Scripts\activate
 source venv/bin/activate
 Install dependencies:
 
-bash
-Copy
-Edit
+
 pip install -r requirements.txt
 How to Use
 Run the main script:
 
-bash
-Copy
-Edit
+
 python main.py
 Choose from the menu:
 
