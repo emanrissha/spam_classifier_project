@@ -1,76 +1,94 @@
-# Spam Classifier Project
+# 🚫📩 Spam Classifier with TensorFlow & Keras
 
-## Overview
-This project implements a simple spam detection system using deep learning with TensorFlow and Keras. It classifies SMS messages as **Spam** or **Ham** (not spam).
+![Python](https://img.shields.io/badge/Python-3.11-blue.svg)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)
 
-The system includes:
-- Data preprocessing and tokenization
-- A feed-forward neural network model
-- Training with early stopping
-- Model evaluation with classification report and confusion matrix
-- Message prediction with saved model and tokenizer
-- Command-line interface to train, evaluate, or predict
+<br><br>
 
----
+## 🔍 Overview
 
-## Project Structure
+This project is a **deep learning-based spam detection system** built with **TensorFlow and Keras**. It classifies SMS messages as either:
 
-```plaintext
+- ✅ **Ham** (Not Spam)  
+- 🚨 **Spam**
+
+You can **train**, **evaluate**, and **predict** from the command line using a friendly menu interface.
+
+<br><br>
+
+## 🧱 Project Structure
+```bash
 spam_classifier_project/
 │
 ├── data/
 │   └── processed/
-│       └── spam_data_processed.csv         # Preprocessed SMS dataset (CSV)
+│       └── spam_data_processed.csv       # 🧾 Preprocessed labeled dataset
 │
 ├── outputs/
 │   ├── models/
-│   │   ├── spam_classifier.keras           # Saved trained model (Keras format)
-│   │   └── tokenizer.pickle                 # Saved tokenizer object (pickle format)
+│   │   ├── spam_classifier.keras         # 🧠 Trained model file
+│   │   └── tokenizer.pickle              # 🔠 Saved tokenizer
 │   └── plots/
-│       └── confusion_matrix.png             # Confusion matrix plot from evaluation
+│       └── confusion_matrix.png          # 📉 Evaluation confusion matrix
 │
 ├── src/
-│   ├── train.py                            # Script to train the model
-│   ├── evaluate.py                         # Script to evaluate the saved model
-│   ├── predict.py                          # Script to predict spam/ham for input messages
-│   ├── model.py                            # Defines the neural network architecture
+│   ├── train.py                          # 🏋️ Model training script
+│   ├── evaluate.py                       # 📈 Evaluation script
+│   ├── predict.py                        # 🔮 Predict message class (Spam or Ham)
+│   └── model.py                          # 🏗️ Model architecture definition
 │
-├── main.py                                # Main CLI entry point to run training, evaluation, or prediction
-├── requirements.txt                       # Python dependencies
-└── README.md                             # Project documentation (this file)
+├── main.py                               # 🧭 Main menu-based CLI entry point
+├── requirements.txt                      # 📦 Project dependencies
+└── README.md                             # 📘 Project documentation
 ```
 
----
+<br><br>
 
-## Setup Instructions
+## ⚙️ Setup Instructions
 
 1. Clone or download the project.
+   
+   ```bash
+   git clone https://github.com/yourusername/spam_classifier_project.git
+   cd spam_classifier_project
+   ```
 
-2. Create and activate a Python virtual environment:
+3. 🧪 Create and activate virtual environment
+   
+   ```bash
+   python -m venv venv
+   # Windows
+   venv\Scripts\activate
+   # macOS/Linux
+   source venv/bin/activate
+   ```
 
-```bash
-python -m venv venv
-# Windows
-venv\Scripts\activate
-# macOS/Linux
-source venv/bin/activate
-```
+3. 📦 Install dependencies
 
-3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+   <details> <summary>Click to view dependencies</summary>
+     tensorflow>=2.11.0
+     pandas
+     numpy
+     scikit-learn
+     matplotlib
+     seaborn
+   </details>
 
-```bash
-pip install -r requirements.txt
-```
----
+<br><br>
 
-## How to Use
-Run the main script:
+## 🚀 How to Use
 
+After setup, run the CLI tool:
 ```bash
 python main.py
 ```
 
-You will be prompted with a menu:
+You'll see:
 
 ```mathematica
 Select an option:
@@ -79,78 +97,100 @@ Select an option:
 3. Predict Message
 Enter choice (1/2/3):
 ```
+- **Train Model**: Trains and saves a model using the dataset
 
+- **Evaluate Model**: Prints metrics & confusion matrix
 
-```markdown
-### What happens on each choice:
+- **Predict Message**: Input your own text to classify
 
-#### 1. Train Model
+<br><br>
 
-- Loads the dataset from `data/processed/spam_data_processed.csv`.
-- Converts SMS text messages into padded sequences using a tokenizer.
-- Builds the neural network model (defined in `src/model.py`).
-- Trains the model with early stopping to prevent overfitting.
-- Saves the trained model to `outputs/models/spam_classifier.keras`.
-- Saves the tokenizer object to `outputs/models/tokenizer.pickle`.
+## 📊 Dataset Format
+The dataset is a CSV file with the following format:
+| Label | Text                                                   |
+|-------|--------------------------------------------------------|
+| 0     | Ok lar... Joking wif u oni...                          |
+| 1     | WINNER!! Claim your free prize now by texting 87121!   |
 
-#### 2. Evaluate Model
+- **label**: 0 = Ham, 1 = Spam
+- **text**: Message content
 
-- Loads the saved model from `outputs/models/spam_classifier.keras`.
-- Loads the tokenizer from `outputs/models/tokenizer.pickle`.
-- Reads the entire dataset again (`data/processed/spam_data_processed.csv`).
-- Vectorizes the text using the loaded tokenizer.
-- Predicts labels on the dataset.
-- Prints a classification report with precision, recall, f1-score.
-- Generates and displays a confusion matrix plot.
-- Saves the confusion matrix plot as `outputs/plots/confusion_matrix.png`.
+ℹ️ Make sure labels are numeric (0 and 1) and not 'ham', 'spam'.
 
-#### 3. Predict Message
+<br><br>
 
-- Loads the saved model and tokenizer (same as above).
-- Prompts the user to enter a custom SMS message.
-- Converts the input message into model input format.
-- Predicts if the message is **Spam** or **Ham** with confidence score.
-- Prints the prediction result.
+## 🧠 Model Architecture
+```text
+Input Layer (100,)
+↓
+Dense(16, activation='relu')
+↓
+Dense(8, activation='relu')
+↓
+Dense(1, activation='sigmoid') → output: probability of spam
+```
+- Optimizer: **Adam**
 
+- Loss: **Binary Crossentropy**
+
+- Metric: **Accuracy**
+
+- EarlyStopping: Patience of 3 (monitoring validation loss)
+
+<br><br>
+
+## 📈 Evaluation Output
+
+When evaluating the model, you'll get:
+
+- Classification report (precision, recall, f1-score)
+
+- 📊 Confusion matrix heatmap
+
+<p align="center"> <img src="outputs/plots/confusion_matrix.png" alt="Confusion Matrix" width="450"/> </p>
+
+<br><br>
+
+## 💬 Example Prediction
+
+```bash
+Enter a message to classify (Spam or Ham): 
+> Congratulations! You've won a free ticket!
+Prediction: SPAM 🚨 (confidence: 0.94)
 ```
 
-## Dataset Format
-The CSV file spam_data_processed.csv should contain two columns:
+<br><br>
 
-text: SMS message text (string)
+## 🛠️ Built With
 
-label: 0 for Ham (not spam), 1 for Spam
+- [Python 3.11](https://www.python.org)
+- [TensorFlow](https://www.tensorflow.org/)
+- [Keras](https://keras.io/)
+- [Scikit-learn](https://scikit-learn.org/)
+- [Matplotlib](https://matplotlib.org/)
+- [Seaborn](https://seaborn.pydata.org/)
+  
+<br><br>
 
-Example:
+## 🧑‍💻 Contributing
 
-label	text
-0	"Ok lar... Joking wif u oni..."
-1	"Free entry in 2 a wkly comp to win FA Cup..."
+Contributions are welcome!
+To contribute:
 
-## Model Details
-Simple feed-forward neural network with two hidden layers (16 and 8 neurons)
+1. Fork the repository
 
-ReLU activation for hidden layers
+2. Create a new branch (`git checkout -b feature/feature-name`)
 
-Sigmoid output for binary classification
+3. Commit your changes (`git commit -m 'Add some feature'`)
 
-Trained with Adam optimizer and binary crossentropy loss
+4. Push to the branch (`git push origin feature/feature-name`)
 
-Early stopping used to prevent overfitting
+5. Open a Pull Request
 
-## Notes & Tips
-Ensure your data labels are numeric 0/1, not string labels like 'ham'/'spam'.
+<br><br>
 
-The tokenizer is limited to the top 1000 words and uses padding/truncation to length 100.
+## 📜 License
 
-Evaluation outputs precision, recall, f1-score, and shows a confusion matrix heatmap.
-
-You can reuse the saved model and tokenizer in your own applications.
-
-## Contact & Contribution
-Feel free to open issues or submit pull requests for improvements!
-
-## License
 This project is licensed under the MIT License.
 
 
