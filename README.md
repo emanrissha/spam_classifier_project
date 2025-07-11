@@ -15,29 +15,29 @@ The system includes:
 
 ## Project Structure
 
-```markdown
+```plaintext
 spam_classifier_project/
 │
 ├── data/
-│ └── processed/
-│ └── spam_data_processed.csv # Preprocessed dataset (CSV)
+│   └── processed/
+│       └── spam_data_processed.csv         # Preprocessed SMS dataset (CSV)
 │
 ├── outputs/
-│ ├── models/
-│ │ ├── spam_classifier.keras # Saved trained model
-│ │ └── tokenizer.pickle # Saved tokenizer
-│ └── plots/
-│ └── confusion_matrix.png # Confusion matrix plot
+│   ├── models/
+│   │   ├── spam_classifier.keras           # Saved trained model (Keras format)
+│   │   └── tokenizer.pickle                 # Saved tokenizer object (pickle format)
+│   └── plots/
+│       └── confusion_matrix.png             # Confusion matrix plot from evaluation
 │
 ├── src/
-│ ├── train.py # Training script
-│ ├── evaluate.py # Evaluation script
-│ ├── predict.py # Single message prediction script
-│ ├── model.py # Model architecture definition
+│   ├── train.py                            # Script to train the model
+│   ├── evaluate.py                         # Script to evaluate the saved model
+│   ├── predict.py                          # Script to predict spam/ham for input messages
+│   ├── model.py                            # Defines the neural network architecture
 │
-├── main.py # CLI for running training/evaluation/prediction
-├── requirements.txt # Project dependencies
-└── README.md # This file
+├── main.py                                # Main CLI entry point to run training, evaluation, or prediction
+├── requirements.txt                       # Python dependencies
+└── README.md                             # Project documentation (this file)
 ```
 
 ---
@@ -56,11 +56,12 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-Install dependencies:
+3. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
+---
 
 ## How to Use
 Run the main script:
@@ -69,13 +70,49 @@ Run the main script:
 python main.py
 ```
 
-Choose from the menu:
+You will be prompted with a menu:
 
-1. Train Model: Train the neural network on the dataset.
+```mathematica
+Select an option:
+1. Train Model
+2. Evaluate Model
+3. Predict Message
+Enter choice (1/2/3):
+```
 
-2. Evaluate Model: Evaluate saved model performance and view confusion matrix.
 
-3. Predict Message: Input your own message and get spam/ham prediction.
+```markdown
+### What happens on each choice:
+
+#### 1. Train Model
+
+- Loads the dataset from `data/processed/spam_data_processed.csv`.
+- Converts SMS text messages into padded sequences using a tokenizer.
+- Builds the neural network model (defined in `src/model.py`).
+- Trains the model with early stopping to prevent overfitting.
+- Saves the trained model to `outputs/models/spam_classifier.keras`.
+- Saves the tokenizer object to `outputs/models/tokenizer.pickle`.
+
+#### 2. Evaluate Model
+
+- Loads the saved model from `outputs/models/spam_classifier.keras`.
+- Loads the tokenizer from `outputs/models/tokenizer.pickle`.
+- Reads the entire dataset again (`data/processed/spam_data_processed.csv`).
+- Vectorizes the text using the loaded tokenizer.
+- Predicts labels on the dataset.
+- Prints a classification report with precision, recall, f1-score.
+- Generates and displays a confusion matrix plot.
+- Saves the confusion matrix plot as `outputs/plots/confusion_matrix.png`.
+
+#### 3. Predict Message
+
+- Loads the saved model and tokenizer (same as above).
+- Prompts the user to enter a custom SMS message.
+- Converts the input message into model input format.
+- Predicts if the message is **Spam** or **Ham** with confidence score.
+- Prints the prediction result.
+
+```
 
 ## Dataset Format
 The CSV file spam_data_processed.csv should contain two columns:
