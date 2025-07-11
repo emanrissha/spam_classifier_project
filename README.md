@@ -53,15 +53,21 @@ python -m venv venv
 venv\Scripts\activate
 # macOS/Linux
 source venv/bin/activate
+```
+
 Install dependencies:
 
-
+```bash
 pip install -r requirements.txt
+```
+
 How to Use
 Run the main script:
 
-
+```bash
 python main.py
+```
+
 Choose from the menu:
 
 1. Train Model: Train the neural network on the dataset.
