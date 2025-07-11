@@ -70,15 +70,6 @@ spam_classifier_project/
    ```bash
    pip install -r requirements.txt
    ```
-   <details> <summary>Click to view dependencies</summary>
-     tensorflow>=2.11.0
-     pandas
-     numpy
-     scikit-learn
-     matplotlib
-     seaborn
-   </details>
-
 <br><br>
 
 ## 🚀 How to Use
